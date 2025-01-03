@@ -50,11 +50,9 @@ More information on the OpenAD Toolkit and OpenAD Service Utilities:
 You will need a Python level of 3.11 & to follow the following installation directions:<br>
 <br>
 1. Use your favorite Python environment manager (e.g., Conda, Pyenv) to create a new Python 3.11.10 environment
-
-2. Activate the new environment and install the required modules per the instructions at this site:
+2. Activate the new environment and install the required modules per the instructions at this site: <br>
    https://github.com/IBM/materials/
-
-3. Install the OpenAD Service Utilities in the new environment with the following command:
+3. Install the OpenAD Service Utilities in the new environment with the following command:<br>
    `pip install git+https://github.com/acceleratedscience/openad_service_utils.git@0.3.0`
    
 
