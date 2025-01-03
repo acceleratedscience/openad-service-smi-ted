@@ -52,7 +52,7 @@ You will need a Python level of 3.11 & to follow these installation directions:<
 
 1. Use your favorite Python environment manager (e.g., Conda, Pyenv) to create a new Python 3.11.10 environment <br>
 
-2. Activate the new environment and install the required modules per the "Getting Started" instructions at this site (ignore the requirement to use Python 3.9): <br>
+2. Activate the new environment and install the required Python modules per the "Getting Started" instructions at this site (ignore the requirement to use Python 3.9): <br>
    https://github.com/IBM/materials/<br>
    
 3. Install the OpenAD Service Utilities in the new environment with the following command:<br>
@@ -61,10 +61,19 @@ You will need a Python level of 3.11 & to follow these installation directions:<
 4. Clone this repo into a new directory: <br>
    `git clone https://github.com/acceleratedscience/openad_smi_ted`<br>
    
+5. Change directory to `openad_smi_ted` then start the server with the following command:<br>
+   `python app.py`<br>
 
+6. In a new terminal session start the OpenAD Toolkit:<br>
+   `openad`<br>
 
+7. At the OpenAD Toolkit command line execute the following command to create a new service for accessing the local server started in step 5:<br>
+   `catalog model service from remote 'http://127.0.0.1:8080/' as sm`<br>
 
+8. At the OpenAD Toolkit command line execute the following command to view the available commands:<br>
+   `sm ?`
 
+Note: The first time you request a particular property (e.g., qm8-
 
 
 https://github.com/BiomedSciAI/biomed-multi-view
