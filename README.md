@@ -1,5 +1,5 @@
 # SMI-TED Inference for Smiles <!-- omit from toc -->
-# BMFM Small Molecules Inference for Smiles <!-- omit from toc -->
+
 [![License MIT](https://img.shields.io/github/license/acceleratedscience/openad_service_utils)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Docs](https://img.shields.io/badge/website-live-brightgreen)](https://acceleratedscience.github.io/openad-docs/) <br>
@@ -10,7 +10,7 @@
 ## About: <!-- omit from toc -->
 <About Text needed>
 
-<img src='images/overview.png' :heigth="60%" width="60%" >
+<img src='images/ted.png' :heigth="60%" width="60%" >
 
 More information can be found at:<br> 
 https://github.com/BiomedSciAI/biomed-multi-view and https://arxiv.org/abs/2410.19704
