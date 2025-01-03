@@ -1,4 +1,5 @@
 <img src='images/ted.png'> 
+
 # SMI-TED Inference for Smiles <!-- omit from toc -->
 
 [![License MIT](https://img.shields.io/github/license/acceleratedscience/openad_service_utils)](https://opensource.org/licenses/MIT)
