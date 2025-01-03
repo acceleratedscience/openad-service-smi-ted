@@ -13,7 +13,9 @@
 <img src='images/ted.png'>
 
 More information can be found at:<br> 
-https://github.com/BiomedSciAI/biomed-multi-view and https://arxiv.org/abs/2410.19704
+- https://huggingface.co/ibm/materials.smi-ted
+- https://github.com/IBM/materials/tree/main
+- https://arxiv.org/abs/2407.20267
 
 --- 
 <br>
