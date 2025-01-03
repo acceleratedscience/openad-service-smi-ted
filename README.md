@@ -64,7 +64,7 @@ You will need a Python level of 3.11 & to follow these installation directions:<
 5. Change directory to `openad_smi_ted` then start the server with the following command:<br>
    `python app.py`<br>
 
-6. In a new terminal session start the OpenAD Toolkit:<br>
+6. Open a new terminal session and start the OpenAD Toolkit:<br>
    `openad`<br>
 
 7. At the OpenAD Toolkit command line execute the following command to create a new service for accessing the local server started in step 5:<br>
@@ -89,7 +89,7 @@ You will need a Python level of 3.11 & to follow these installation directions:<
 3. After the build is complete, execute the following command to run the container and have the server available on port 8080:
    `docker run -p 8080:8080 smi-ted-app`
 
-4. In a new terminal session start the OpenAD Toolkit:<br>
+4. Open a new terminal session and start the OpenAD Toolkit:<br>
    `openad`<br>
 
 5. At the OpenAD Toolkit command line execute the following command to create a new service for accessing the local server started in step 5:<br>
