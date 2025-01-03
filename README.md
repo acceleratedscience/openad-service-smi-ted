@@ -1,3 +1,4 @@
+<img src='images/ted.png'> 
 # SMI-TED Inference for Smiles <!-- omit from toc -->
 
 [![License MIT](https://img.shields.io/github/license/acceleratedscience/openad_service_utils)](https://opensource.org/licenses/MIT)
@@ -11,8 +12,6 @@
 <About Text needed>
 
 SMILES-based Transformer Encoder-Decoder (SMILES-TED) is an encoder-decoder model pre-trained on a curated dataset of 91 million SMILES samples sourced from PubChem, equivalent to 4 billion molecular tokens. SMI-TED supports various complex tasks, including quantum property prediction, with two main variants ( 289 M and 8 × 289 M ).
-
-<img src='images/ted.png'>
 
 More information can be found at:<br> 
 - https://huggingface.co/ibm/materials.smi-ted
