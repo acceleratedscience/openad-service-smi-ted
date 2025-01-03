@@ -14,10 +14,17 @@
 
 SMILES-based Transformer Encoder-Decoder (SMILES-TED) is an encoder-decoder model pre-trained on a curated dataset of 91 million SMILES samples sourced from PubChem, equivalent to 4 billion molecular tokens. SMI-TED supports various complex tasks, including quantum property prediction, with two main variants ( 289 M and 8 × 289 M ).
 
-More information can be found at:<br> 
+This repository provides a Python-based tool to host the SMI-TED capablities via a REST API. Once the API is set up, use the OpenAD Toolkit to easily access the inference functions of SMI-TED. 
+
+More information on SMI-TED can be found at:<br> 
 - https://huggingface.co/ibm/materials.smi-ted
 - https://github.com/IBM/materials/tree/main
 - https://arxiv.org/abs/2407.20267
+
+More information on the OpenAD Toolkit and OpenAD Service Utilities:
+- https://accelerate.science/projects/openad
+- https://github.com/acceleratedscience/open-ad-toolkit
+- https://github.com/acceleratedscience/openad_service_utils
 
 --- 
 <br>
