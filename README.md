@@ -41,7 +41,7 @@ More information on the OpenAD Toolkit and OpenAD Service Utilities:
 - [Deployment via Sky Pilot](#deployment-via-sky-pilot)
 
 <!-- tocstop -->
-<br>
+Note: All of these deployment options will allow you to access SMI-TED functions using the [OpenAD Toolkit](https://github.com/acceleratedscience/open-ad-toolkit).  You may want to first install the Toolkit in its own Python environment before proceeding with deploying the SMI-TED utility. <br>
 
 --- 
 
