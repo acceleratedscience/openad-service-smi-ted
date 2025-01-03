@@ -1,0 +1,3 @@
+openad-service-utils @ git+https://github.com/acceleratedscience/openad_service_utils.git@nested_implementation
+biomed-multi-view @ git+https://github.com/acceleratedscience/biomed-multi-view.git
+numpy<2
