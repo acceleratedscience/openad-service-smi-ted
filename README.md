@@ -52,7 +52,7 @@ You will need a Python level of 3.11 & to follow these installation directions:<
 
 1. Use your favorite Python environment manager (e.g., Conda, Pyenv) to create a new Python 3.11.10 environment <br>
 
-2. Activate the new environment and install the required Python modules per the "Getting Started" instructions at this site (ignore the requirement to use Python 3.9): <br>
+2. Activate the new environment and install the required Python modules for SMI-TED per the "Getting Started" instructions at this site (ignore the requirement to use Python 3.9): <br>
    https://github.com/IBM/materials/<br>
    
 3. Install the OpenAD Service Utilities in the new environment with the following command:<br>
