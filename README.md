@@ -100,7 +100,7 @@ You will need a Python level of 3.11 & to follow these installation directions:<
 
 # Deployment On OpenShift 
 <br>
-Helm Charts are comning soon.<br>
+Helm Charts are coming soon.<br>
 
 
 # Deployment via Sky Pilot
