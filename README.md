@@ -27,7 +27,6 @@ More information on the OpenAD Toolkit and OpenAD Service Utilities:
 - https://github.com/acceleratedscience/openad_service_utils
 
 --- 
-<br>
 
 ## Deployment Options <!-- omit from toc -->
 
