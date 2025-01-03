@@ -1,6 +1,6 @@
 <img src='images/smiling_teddy_bear.png'> 
 
-# SMI-TED Inference for Smiles <!-- omit from toc -->
+# SMI-TED Inference for SMILES <!-- omit from toc -->
 
 [![License MIT](https://img.shields.io/github/license/acceleratedscience/openad_service_utils)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -77,57 +77,33 @@ You will need a Python level of 3.11 & to follow these installation directions:<
 
 # Deployment locally via container
 <br>
-run on the command line `mkdir -p ~/.openad_models`
 
-***Note:*** <br>
-Initially downloading models may take some time, this will be prompted by your first request. To pre-load models you can run the following <br><br>
-`mkdir -p ~/.openad_models/properties/molecules && aws s3 sync s3://ad-prod-biomed/molecules/small_molecules/ /tmp/.openad_models/properties/molecules/small_molecules --no-sign-request --exact-timestamps`
+***Prerequisites***: Make sure you have Docker and the Docker Buildx plugin installed on your system.<br>
+
+1. Clone this repo into a new directory: <br>
+   `git clone https://github.com/acceleratedscience/openad_smi_ted`<br>
+
+2. To build the Docker image, change directory to `openad_smi_ted` then start the build with the following command:<br>
+   `docker build -t smi-ted-app .`<br>
+
+3. After the build is complete, execute the following command to run the container and have the server available on port 8080:
+   `docker run -p 8080:8080 smi-ted-app`
+
+4. In a new terminal session start the OpenAD Toolkit:<br>
+   `openad`<br>
+
+5. At the OpenAD Toolkit command line execute the following command to create a new service for accessing the local server started in step 5:<br>
+   `catalog model service from remote 'http://0.0.0.0:8080/' as sm`<br>
+
+6. At the OpenAD Toolkit command line execute the following command to view the available commands:<br>
+   `sm ?`   
+
+# Deployment On OpenShift 
 <br>
-it does require installing the AWS cli which can be found here..
-
-https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html
-
-then using Podman or Docker run the following in the same directory as the compose.yaml file:
-### step 1:
-`(podman or docker) compose create`<br>
-### step 2:
-`(podman or docker) start`<br>
-
-the service will start on poert `8080` change this in the compose file if you wish it to run on another port.
-### Step 3:
-In openad run the following command
-`catalog model service from remote 'http://127.0.0.1:8080/' as sm`
-
-### Notes
-
-- The container used is https://quay.io/ibmdpdev/bmfm_sm_properties:latest
-
-- You can use the compose.yaml file rather than download the entire repository
-
-https://github.com/acceleratedscience/bmfm-sm/blob/main/compose.yaml
-
-- This has been run soccessfully on Mac OS with Podman and Rosetta.
-
-
-
-# Deployment On OpenShift
-Helm Charts are available for OpenShift including Auto scaling of services.
-
-See the helm-chart directory in the repository
-
-This currently does not support aynchronous requests, you can enable it if you deploy a shared filesystem, or only have a single pod running.
+Helm Charts are comning soon.<br>
 
 
 # Deployment via Sky Pilot
 <br>
-Support for skypilot on AWS is available. you must have a valid aws account setup with appropriate accound settings to allow sky pilot
-
-### In openad running the following at the OpenAD prompt or Magic Command
-### Step 1:
-`catalog model service from 'git@github.com:acceleratedscience/bmfm-sm.git' as sm`<br>
-### Step 2: 
-`model service up sm` <br>
-
-to stop the service run `model service down` in openad.
-
-***Note*** you will now have to wait until the service is available use `sky status` to see if the service is up and provisioned
+Support for skypilot on AWS is coming soon
+<br>
