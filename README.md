@@ -56,7 +56,10 @@ You will need a Python level of 3.11 & to follow these installation directions:<
    https://github.com/IBM/materials/<br>
    
 3. Install the OpenAD Service Utilities in the new environment with the following command:<br>
-   `pip install git+https://github.com/acceleratedscience/openad_service_utils.git@0.3.0`<br>
+   `pip install git+https://github.com/acceleratedscience/openad_service_utils.git@nested_implementation`<br>
+
+4. Clone this repo into a new directory: <br>
+   `git clone https://github.com/acceleratedscience/openad_smi_ted`<br>
    
 
 
