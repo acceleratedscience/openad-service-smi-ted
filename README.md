@@ -47,8 +47,9 @@ More information on the OpenAD Toolkit and OpenAD Service Utilities:
 
 # Deployment locally using a Python virtual environment 
 <br>
-You will need a Python level of 3.11 & to follow the following installation directions:<br>
+You will need a Python level of 3.11 & to follow these installation directions:<br>
 <br>
+
 1. Use your favorite Python environment manager (e.g., Conda, Pyenv) to create a new Python 3.11.10 environment <br>
 
 2. Activate the new environment and install the required modules per the instructions at this site: <br>
