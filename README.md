@@ -10,7 +10,7 @@
 ## About: <!-- omit from toc -->
 <About Text needed>
 
-<img src='images/ted.png' :heigth="60%" width="60%" >
+<img src='images/ted.png'>
 
 More information can be found at:<br> 
 https://github.com/BiomedSciAI/biomed-multi-view and https://arxiv.org/abs/2410.19704
