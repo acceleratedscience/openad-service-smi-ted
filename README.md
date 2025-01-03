@@ -92,7 +92,7 @@ You will need a Python level of 3.11 & to follow these installation directions:<
 4. Open a new terminal session and start the OpenAD Toolkit:<br>
    `openad`<br>
 
-5. At the OpenAD Toolkit command line execute the following command to create a new service for accessing the local server started in step 5:<br>
+5. At the OpenAD Toolkit command line execute the following command to create a new service for accessing the local server started in step 3:<br>
    `catalog model service from remote 'http://0.0.0.0:8080/' as sm`<br>
 
 6. At the OpenAD Toolkit command line execute the following command to view the available commands:<br>
