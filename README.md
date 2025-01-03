@@ -73,32 +73,7 @@ You will need a Python level of 3.11 & to follow these installation directions:<
 8. At the OpenAD Toolkit command line execute the following command to view the available commands:<br>
    `sm ?`
 
-Note: The first time you request a particular property (e.g., qm8-
-
-
-https://github.com/BiomedSciAI/biomed-multi-view
-<br>
-
-Once installed you can install the openad wrapper
-git+https://github.com/acceleratedscience/openad_service_utils.git
-<br>
-***Note:*** <br>
-- Initially downloading models may take some time, this will be prompted by your first request. To pre-load models you can run the following <br>
-
-`mkdir -p ~/.openad_models/properties/molecules && aws s3 sync s3://ad-prod-biomed/molecules/small_molecules/ /tmp/.openad_models/properties/molecules/small_molecules --no-sign-request --exact-timestamps`
-
-<br>
-it does require installing the AWS cli which can be found here..<br>
-
-https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html
-
-
-Then run `python ./bmfm_sm_api/sm_implementation.py`
-
-
-In OpenAD run the following command once the container is up and running
-`catalog model service from remote 'http://127.0.0.1:8080/' as sm`
-
+***Note***: The first time you request a particular property (e.g., "qm8-e1-cam") the OpenAD Service Utility will take some time to download and locally cache the correct models. Requests will proceed much faster once models are cached locally.  
 
 # Deployment locally via container
 <br>
