@@ -22,11 +22,11 @@ ENV PYTHONUNBUFFERED=1 \
     LOGGING_CONFIG_PATH="/tmp/app.log" \
     gt4sd_local_cache_path="/tmp/.openad_models" \
     GT4SD_S3_HOST="s3.us-east-2.amazonaws.com" \
-    GT4SD_S3_ACCESS_KEY="AKIATZKIEHYRXDBHLZHQ" \
-    GT4SD_S3_SECRET_KEY="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" \
+    GT4SD_S3_ACCESS_KEY="" \
+    GT4SD_S3_SECRET_KEY="" \
     GT4SD_S3_HOST_HUB="s3.us-east-2.amazonaws.com" \
-    GT4SD_S3_ACCESS_KEY_HUB="AKIATZKIEHYRXDBHLZHQ" \
-    GT4SD_S3_SECRET_KEY_HUB="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" 
+    GT4SD_S3_ACCESS_KEY_HUB="" \
+    GT4SD_S3_SECRET_KEY_HUB="" 
  
 RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common \
     build-essential curl git ssh libxrender1 libxext6\
