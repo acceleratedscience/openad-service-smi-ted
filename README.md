@@ -1,4 +1,4 @@
-<img src='images/ted.png'> 
+<img src='images/smiling_teddy_bear.png'> 
 
 # SMI-TED Inference for Smiles <!-- omit from toc -->
 
