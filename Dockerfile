@@ -1,9 +1,12 @@
 FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime AS runtime
-ENV DEBIAN_FRONTEND=noninteractive
-ENV TZ=America/Los_Angeles
-ENV PYTHONUNBUFFERED=1 \
-    PYTHON_VERSION=3.11.10 \
-    HF_HOME="/tmp/.cache/huggingface" \
+
+# Set the environment variables for the container system
+ENV DEBIAN_FRONTEND=noninteractive \
+    TZ=America/Los_Angeles \
+    PYTHONUNBUFFERED=1
+
+# Set the environment variables for the application
+ENV HF_HOME="/tmp/.cache/huggingface" \
     MPLCONFIGDIR="/tmp/.config/matplotlib" \
     LOGGING_CONFIG_PATH="/tmp/app.log" \
     gt4sd_local_cache_path="/tmp/.openad_models" \
@@ -13,7 +16,8 @@ ENV PYTHONUNBUFFERED=1 \
     GT4SD_S3_HOST_HUB="s3.us-east-2.amazonaws.com" \
     GT4SD_S3_ACCESS_KEY_HUB="" \
     GT4SD_S3_SECRET_KEY_HUB="" 
- 
+
+# Install the required system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common \
     build-essential curl git ssh libxrender1 libxext6\
     && rm -rf /var/lib/apt/lists/*
@@ -25,11 +29,15 @@ WORKDIR /app
 COPY ./requirements.txt ./requirements.txt
 COPY ./requirements_extra.txt ./requirements_extra.txt
 
+# Install the required dependencies
 RUN python -m pip install --no-cache-dir -r requirements.txt 
 RUN python -m pip install --no-cache-dir -r requirements_extra.txt 
 
+# Copy the rest of the application code to the working directory
 COPY . .
 
+# Expose the network port
 EXPOSE 8080
+
 # Specify the command to run when the container starts
 CMD ["python", "app.py"]
