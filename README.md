@@ -36,7 +36,7 @@ More information on the OpenAD Toolkit and OpenAD Service Utilities:
 
 - [Deployment locally via container](#deployment-locally-via-container)
 
-- [Deployment On OpenShift](#deployment-lon-openshift)
+- [Deployment On OpenShift](#deployment-on-openshift)
 
 - [Deployment via Sky Pilot](#deployment-via-sky-pilot)
 
@@ -99,9 +99,28 @@ You will need a Python level of 3.11 & to follow these installation directions:<
    `sm ?`   
 
 # Deployment On OpenShift 
-<br>
-Helm Charts are coming soon.<br>
 
+Install Helm Chart
+```shell
+helm install smi-ted ./helm-chart
+```
+
+Start a new build
+```shell
+oc start-build smi-ted-build
+```
+
+Wait for the build to complete
+```shell
+LATEST_BUILD=$(oc get builds | grep 'smi-ted-build-' | awk '{print $1}' | sort -V | tail -n 1)
+
+oc wait --for=condition=Complete build/$LATEST_BUILD --timeout=15m
+```
+
+Run request test (pod may take some time to initialize so curl request may fail. try again.)
+```shell
+curl "http://$(oc get route smi-ted-openad-model -o jsonpath='{.spec.host}')/health"
+```
 
 # Deployment via Sky Pilot
 <br>
