@@ -22,6 +22,7 @@ image:
     - LOGGING_CONFIG_PATH: "/tmp/app.log"  # If you want to set a logging path
     - gt4sd_local_cache_path: "/data/.openad_models"  # !important mount checkpoints to this Volume
     - ENABLE_CACHE_RESULTS: "True"  # enable cache for inference results, enable only for deterministic models
+    - SELECTED_ALGORITHM_APPS: “QM9,QM8,molecule_net”  # enable all models
 
 nameOverride: ""
 fullnameOverride: ""

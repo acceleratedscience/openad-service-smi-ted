@@ -25,3 +25,4 @@ services:
       - gt4sd_s3_bucket_hub_properties=ad-prod-biomed
       - ENABLE_CACHE_RESULTS=True
       - ASYNC_ALLOW=True
+      - SELECTED_ALGORITHM_APPS=QM9

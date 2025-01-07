@@ -112,7 +112,7 @@ class MySimplePredictorCombo(SimplePredictorMultiAlgorithm):
 
 
 # limiting to open source available checkpoints
-selected_algorithm_apps = ["QM9"]
+selected_algorithm_apps = os.getenv("SELECTED_ALGORITHM_APPS", default="QM9").split(",")
 
 for key, value in NESTED_DATA_SETS.items():
     if key in selected_algorithm_apps:
@@ -124,5 +124,6 @@ for key, value in NESTED_DATA_SETS.items():
 
 # start the service running on port 8080
 if __name__ == "__main__":
+    print(f"Selected Algorithm Applications: {selected_algorithm_apps}")
     # start the server
     start_server(port=8080)
