@@ -27,6 +27,7 @@ from nested_parameters import (
     get_property_list,
 )
 
+
 class MySimplePredictorCombo(SimplePredictorMultiAlgorithm):
     """Class for your Predictor based on Combo Predictor to support multiple"""
 
@@ -48,7 +49,7 @@ class MySimplePredictorCombo(SimplePredictorMultiAlgorithm):
     property_type: PredictorTypes = PredictorTypes.MOLECULE
     # OPTIONAL (available_properties). Use only if your class implements many models the user can choose from.
     available_properties: List[PropertyInfo] = [
-        PropertyInfo(name="BACE", description=""),                                   
+        PropertyInfo(name="BACE", description=""),
         PropertyInfo(name="ESOL", description=""),
     ]
 
@@ -76,18 +77,22 @@ class MySimplePredictorCombo(SimplePredictorMultiAlgorithm):
         print(f"Setting up model {self.get_selected_property()} on >> model filepath: {self.get_model_location()}")
 
     def predict(self, sample: Any) -> str | float | int | list | dict:
-        """ get chkpt and vocab filename and location for current property """
+        """get chkpt and vocab filename and location for current property"""
         pt_dir = self.get_model_location()
         try:
             if not os.path.isdir(pt_dir):
                 raise FileNotFoundError(f"Directory '{pt_dir}' does not exist.")
-            pt_file_list = [f for f in os.listdir(pt_dir) if f.endswith('.pt') and os.path.isfile(os.path.join(pt_dir, f))]
+            pt_file_list = [
+                f for f in os.listdir(pt_dir) if f.endswith(".pt") and os.path.isfile(os.path.join(pt_dir, f))
+            ]
             if not pt_file_list:
                 raise FileNotFoundError(f"No checkpoint file '{pt_dir}'.")
             pt_file = pt_file_list[0]
-            vocab_file_list = [f for f in os.listdir(pt_dir) if f.endswith('.txt') and os.path.isfile(os.path.join(pt_dir, f))]
+            vocab_file_list = [
+                f for f in os.listdir(pt_dir) if f.endswith(".txt") and os.path.isfile(os.path.join(pt_dir, f))
+            ]
             if not vocab_file_list:
-                raise FileNotFoundError(f"No vocab/txt file '{pt_dir}'.") 
+                raise FileNotFoundError(f"No vocab/txt file '{pt_dir}'.")
             vocab_file = vocab_file_list[0]
         except FileNotFoundError as e:
             print(f"Wrapper Setup Error: {e}")
@@ -105,12 +110,17 @@ class MySimplePredictorCombo(SimplePredictorMultiAlgorithm):
         results_list = outputs.tolist()
         return results_list[0][0]
 
+
+# limiting to open source available checkpoints
+selected_algorithm_apps = ["QM9"]
+
 for key, value in NESTED_DATA_SETS.items():
-    props = NestedParameters2()
-    props.set_parameters(
-        algorithm_name="smi_ted", algorithm_application=key, available_properties=get_property_list(value)
-    )
-    MySimplePredictorCombo.register(props, no_model=False)
+    if key in selected_algorithm_apps:
+        props = NestedParameters2()
+        props.set_parameters(
+            algorithm_name="smi_ted", algorithm_application=key, available_properties=get_property_list(value)
+        )
+        MySimplePredictorCombo.register(props, no_model=False)
 
 # start the service running on port 8080
 if __name__ == "__main__":

@@ -36,6 +36,8 @@ More information on the OpenAD Toolkit and OpenAD Service Utilities:
 
 - [Deployment locally via container](#deployment-locally-via-container)
 
+- [Deployment locally via compose](#deployment-locally-via-compose)
+
 - [Deployment On OpenShift](#deployment-on-openshift)
 
 - [Deployment via Sky Pilot](#deployment-via-sky-pilot)
@@ -121,6 +123,37 @@ Run request test (pod may take some time to initialize so curl request may fail.
 ```shell
 curl "http://$(oc get route smi-ted-openad-model -o jsonpath='{.spec.host}')/health"
 ```
+
+# Deployment locally via Compose
+<br>
+run on the command line `mkdir -p ~/.openad_models`
+
+***Note:*** <br>
+Initially downloading models may take some time, this will be prompted by your first request. To pre-load models you can run the following <br><br>
+`mkdir -p ~/.openad_models/properties/molecules && aws s3 sync s3://ad-prod-biomed/molecules/smi_ted/ /tmp/.openad_models/properties/molecules/smi_ted --no-sign-request --exact-timestamps`
+<br>
+it does require installing the AWS cli which can be found here..
+
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html
+
+then using Podman or Docker run the following in the same directory as the compose.yaml file:
+### step 1:
+`(podman or docker) compose create`<br>
+### step 2:
+`(podman or docker) compose start`<br>
+
+the service will start on poert `8080` change this in the compose file if you wish it to run on another port.
+### Step 3:
+In openad run the following command
+`catalog model service from remote 'http://127.0.0.1:8080/' as sm`
+
+### Notes
+
+- The container used is https://quay.io/ibmdpdev/openad_smi_ted:latest
+
+- You can use the compose.yaml file rather than download the entire repository
+
+https://github.com/acceleratedscience/openad_smi_ted/blob/main/compose.yaml
 
 # Deployment via Sky Pilot
 <br>
