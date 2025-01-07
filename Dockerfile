@@ -5,9 +5,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
     TZ=America/Los_Angeles \
     PYTHONUNBUFFERED=1
 
-# Set the environment variables for the application
-
-
 # Install the required system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common \
     build-essential curl git ssh libxrender1 libxext6\
@@ -21,7 +18,8 @@ COPY ./requirements.txt ./requirements.txt
 COPY ./requirements_extra.txt ./requirements_extra.txt
 
 # Install the required dependencies
-RUN python -m pip install --no-cache-dir -r requirements.txt 
+RUN python -m pip install --no-cache-dir -r requirements.txt
+# Installing pytorch-fast-transformers in succession to pick up the torch
 RUN python -m pip install --no-cache-dir -r requirements_extra.txt 
 
 # Copy the rest of the application code to the working directory
@@ -30,6 +28,7 @@ COPY . .
 # Expose the network port
 EXPOSE 8080
 
+# Set the environment variables for the application
 ENV HF_HOME="/tmp/.cache/huggingface" \
     MPLCONFIGDIR="/tmp/.config/matplotlib" \
     LOGGING_CONFIG_PATH="/tmp/app.log" \
