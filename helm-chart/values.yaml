@@ -125,7 +125,7 @@ volumeMounts:
 # init container config to download s3 resources
 aws:
   image: "amazon/aws-cli"
-  s3Source: "s3://gt4sd-cos-properties-artifacts" # s3 source path. !important set for Deployment
+  s3Source: "s3://gt4sd-cos-properties-artifacts/molecules/smi_ted" # s3 source path. !important set for Deployment
   destination: "/data/.openad_models/properties/molecules/smi_ted"
   credentials: "aws-secret"
   region: "us-east-2"
