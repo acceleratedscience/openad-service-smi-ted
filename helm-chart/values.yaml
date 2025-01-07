@@ -22,7 +22,11 @@ image:
     - LOGGING_CONFIG_PATH: "/tmp/app.log"  # If you want to set a logging path
     - gt4sd_local_cache_path: "/data/.openad_models"  # !important mount checkpoints to this Volume
     - ENABLE_CACHE_RESULTS: "True"  # enable cache for inference results, enable only for deterministic models
-    - SELECTED_ALGORITHM_APPS: “QM9,QM8,molecule_net”  # enable all models
+    - SELECTED_ALGORITHM_APPS: QM9,QM8,molecule_net  # enable all models
+    - gt4sd_s3_bucket_algorithms: gt4sd-cos-properties-artifacts
+    - gt4sd_s3_bucket_properties: gt4sd-cos-properties-artifacts
+    - gt4sd_s3_bucket_hub_algorithms: gt4sd-cos-properties-artifacts
+    - gt4sd_s3_bucket_hub_properties: gt4sd-cos-properties-artifacts
 
 nameOverride: ""
 fullnameOverride: ""
@@ -119,7 +123,13 @@ volumeMounts:
     mountPath: "/data"
 
 # init container config to download s3 resources
-aws: {}
+aws:
+  image: "amazon/aws-cli"
+  s3Source: "s3://my-bucket-name/path" # s3 source path. !important set for Deployment
+  destination: "/data/.openad_models/properties/molecules/smi_ted"
+  credentials: "aws-secret"
+  region: "us-east-2"
+
 
 nodeSelector: {}
 

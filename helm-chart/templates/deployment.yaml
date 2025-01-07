@@ -46,15 +46,17 @@ spec:
           image: {{ .Values.aws.image | quote }}
           command: ["/bin/sh", "-c"]
           args:
-            {{- range .Values.aws.args }}
-            - {{ . | quote }}
+            {{- if and .Values.aws.s3Source .Values.aws.destination }}
+            - "aws s3 sync {{ .Values.aws.s3Source }} {{ .Values.aws.destination }}"
             {{- end }}
-          # envFrom:
-          # - secretRef:
-          #     name: {{ .Values.aws.credentials | quote }}
+          {{- if .Values.aws.credentials }}
+          envFrom:
+          - secretRef:
+              name: {{ .Values.aws.credentials | quote }}
           env:
             - name: AWS_DEFAULT_REGION
               value: {{ .Values.aws.region | quote }}
+          {{- end }}
           {{- if .Values.volumeMounts }}
           volumeMounts:
             {{- toYaml .Values.volumeMounts | nindent 12 }}
