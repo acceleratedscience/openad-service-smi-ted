@@ -27,6 +27,8 @@ More information on the OpenAD Toolkit and OpenAD Service Utilities:
 - https://github.com/acceleratedscience/openad_service_utils
 
 --- 
+## Note:
+this current version of the code in app.py excludes all other properties other than QM9 properties. you can change this to include QM8 and Molecule Net if checkpoints avsilable by simply changing the selected algorithms list.
 
 ## Deployment Options <!-- omit from toc -->
 

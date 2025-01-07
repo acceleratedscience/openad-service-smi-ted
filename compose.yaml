@@ -1,6 +1,6 @@
 services:
   openad_mammal_properties:
-    image: smi_ted
+    image: quay.io/ibmdpdev/openad_smi_ted:latest
     container_name: smi_ted
     hostname: smi_ted
     ports:
