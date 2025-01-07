@@ -15,7 +15,11 @@ ENV HF_HOME="/tmp/.cache/huggingface" \
     GT4SD_S3_SECRET_KEY="" \
     GT4SD_S3_HOST_HUB="s3.us-east-2.amazonaws.com" \
     GT4SD_S3_ACCESS_KEY_HUB="" \
-    GT4SD_S3_SECRET_KEY_HUB="" 
+    GT4SD_S3_SECRET_KEY_HUB="" \
+    gt4sd_s3_bucket_algorithms="ad-prod-biomed" \
+    gt4sd_s3_bucket_properties="ad-prod-biomed" \
+    gt4sd_s3_bucket_hub_algorithms="ad-prod-biomed" \
+    gt4sd_s3_bucket_hub_properties="ad-prod-biomed"
 
 # Install the required system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common \
