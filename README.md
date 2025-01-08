@@ -64,17 +64,24 @@ You will need a Python level of 3.11 & to follow these installation directions:<
 
 4. Clone this repo into a new directory: <br>
    `git clone https://github.com/acceleratedscience/openad_smi_ted`<br>
+
+5. Change directory to `openad_smi_ted`.
+  
+6. Add the necessary environment variables used by the OpenAD service utilities:
+   `source ./openad_smi_ted_bash_env.sh <br>
    
-5. Change directory to `openad_smi_ted` then start the server with the following command:<br>
+7. Start the server with the following command:<br>
    `python app.py`<br>
 
-6. Open a new terminal session and start the OpenAD Toolkit:<br>
+8. Open a new terminal session.
+  
+9. In the new terminal session start the OpenAD Toolkit:<br>
    `openad`<br>
 
-7. At the OpenAD Toolkit command line execute the following command to create a new service for accessing the local server started in step 5:<br>
+10. At the OpenAD Toolkit command line execute the following command to create a new service for accessing the local server started in step 5:<br>
    `catalog model service from remote 'http://127.0.0.1:8080/' as sm`<br>
 
-8. At the OpenAD Toolkit command line execute the following command to view the available commands:<br>
+11. At the OpenAD Toolkit command line execute the following command to view the available commands:<br>
    `sm ?`
 
 ***Note***: The first time you request a particular property (e.g., "qm8-e1-cam") the OpenAD Service Utility will take some time to download and locally cache the correct models. Requests will proceed much faster once models are cached locally.  
