@@ -65,10 +65,10 @@ You will need a Python level of 3.11 & to follow these installation directions:<
 4. Clone this repo into a new directory: <br>
    `git clone https://github.com/acceleratedscience/openad_smi_ted`<br>
 
-5. Change directory to `openad_smi_ted`.
+5. Change directory to `openad_smi_ted`.<br>
   
-6. Add the necessary environment variables used by the OpenAD service utilities:
-   `source ./openad_smi_ted_bash_env.sh <br>
+6. Add the necessary environment variables used by the OpenAD service utilities:<br>
+   `source ./openad_smi_ted_bash_env.sh` <br>
    
 7. Start the server with the following command:<br>
    `python app.py`<br>
