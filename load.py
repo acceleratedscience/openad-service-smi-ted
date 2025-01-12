@@ -19,6 +19,12 @@ from transformers import BertTokenizer
 import numpy as np
 import pandas as pd
 
+# Chemistry
+from rdkit import Chem
+from rdkit.Chem import PandasTools
+from rdkit.Chem import Descriptors
+PandasTools.RenderImagesInAllDataFrames(True)
+
 # Standard library
 from functools import partial
 import regex as re
@@ -27,6 +33,17 @@ import os
 import gc
 from tqdm import tqdm
 tqdm.pandas()
+
+
+# function to canonicalize SMILES
+def normalize_smiles(smi, canonical=True, isomeric=False):
+    try:
+        normalized = Chem.MolToSmiles(
+            Chem.MolFromSmiles(smi), canonical=canonical, isomericSmiles=isomeric
+        )
+    except:
+        normalized = None
+    return normalized
 
 
 class MolTranBertTokenizer(BertTokenizer):
@@ -476,9 +493,17 @@ class Smi_ted(nn.Module):
         if self.is_cuda_available:
             self.encoder.cuda()
             self.decoder.cuda()
+
+        # handle single str or a list of str
+        smiles = pd.Series(smiles) if isinstance(smiles, str) else pd.Series(list(smiles))
+
+        # SMILES normalization
+        smiles = smiles.apply(normalize_smiles)
+        null_idx = smiles[smiles.isnull()].index.to_list()  # keep track of SMILES that cannot normalize
+        smiles = smiles.dropna()
         
         # tokenizer
-        idx, mask = self.tokenize(smiles)
+        idx, mask = self.tokenize(smiles.to_list())
         
         ###########
         # Encoder #
@@ -514,6 +539,30 @@ class Smi_ted(nn.Module):
         # reconstruct tokens
         pred_ids = self.decoder.lang_model(pred_cte.view(-1, self.max_len, self.n_embd))
         pred_ids = torch.argmax(pred_ids, axis=-1)
+
+        # replacing null SMILES with NaN values
+        for idx in null_idx:
+            true_ids = true_ids.tolist()
+            pred_ids = pred_ids.tolist()
+            true_cte = true_cte.tolist()
+            pred_cte = pred_cte.tolist()
+            true_set = true_set.tolist()
+            pred_set = pred_set.tolist()
+
+            true_ids.insert(idx, np.array([np.nan]*self.config['max_len']))
+            pred_ids.insert(idx, np.array([np.nan]*self.config['max_len']))
+            true_cte.insert(idx, np.array([np.nan] * (self.config['max_len']*self.config['n_embd'])))
+            pred_cte.insert(idx, np.array([np.nan] * (self.config['max_len']*self.config['n_embd'])))
+            true_set.insert(idx, np.array([np.nan]*self.config['n_embd']))
+            pred_set.insert(idx, np.array([np.nan]*self.config['n_embd']))
+        
+        if len(null_idx) > 0:
+            true_ids = torch.tensor(true_ids)
+            pred_ids = torch.tensor(pred_ids)
+            true_cte = torch.tensor(true_cte)
+            pred_cte = torch.tensor(pred_cte)
+            true_set = torch.tensor(true_set)
+            pred_set = torch.tensor(pred_set)
         
         return ((true_ids, pred_ids), # tokens
                (true_cte, pred_cte),  # token embeddings
@@ -547,9 +596,14 @@ class Smi_ted(nn.Module):
 
         # handle single str or a list of str
         smiles = pd.Series(smiles) if isinstance(smiles, str) else pd.Series(list(smiles))
-        n_split = smiles.shape[0] // batch_size if smiles.shape[0] >= batch_size else smiles.shape[0]
-        
+
+        # SMILES normalization
+        smiles = smiles.apply(normalize_smiles)
+        null_idx = smiles[smiles.isnull()].index.to_list()  # keep track of SMILES that cannot normalize
+        smiles = smiles.dropna()
+
         # process in batches
+        n_split = smiles.shape[0] // batch_size if smiles.shape[0] >= batch_size else smiles.shape[0]
         embeddings = [
             self.extract_embeddings(list(batch))[2].cpu().detach().numpy() 
                 for batch in tqdm(np.array_split(smiles, n_split))
@@ -561,8 +615,13 @@ class Smi_ted(nn.Module):
             torch.cuda.empty_cache()
             gc.collect()
 
+        # replacing null SMILES with NaN values
+        for idx in null_idx:
+            flat_list.insert(idx, np.array([np.nan]*self.config['n_embd']))
+        flat_list = np.asarray(flat_list)
+
         if return_torch:
-            return torch.tensor(np.array(flat_list))
+            return torch.tensor(flat_list)
         return pd.DataFrame(flat_list)
     
     def decode(self, smiles_embeddings):
@@ -606,7 +665,6 @@ def load_smi_ted(folder="./smi_ted_light",
               ):
     tokenizer = MolTranBertTokenizer(os.path.join(folder, vocab_filename))
     model = Smi_ted(tokenizer)
-    print(f"\n[I] RUNNING MODEL FROM PATH: {os.path.join(folder, ckpt_filename)}\n")
     model.load_checkpoint(os.path.join(folder, ckpt_filename))
     model.eval()
     print('Vocab size:', len(tokenizer.vocab))
