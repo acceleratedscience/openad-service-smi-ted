@@ -80,12 +80,12 @@ ingress:
 
 resources:
   limits:
-    nvidia.com/gpu: 1
-    cpu: 10000m  # 10 CPU cores
-    memory: "30Gi"
+    # nvidia.com/gpu: 1
+    cpu: 15000m  # 20 CPU cores
+    memory: "25Gi"
   requests:
-    nvidia.com/gpu: 1
-    cpu: 1000m   # 1 CPU cores (adjust if necessary)
+    # nvidia.com/gpu: 1
+    cpu: 5000m   # 10 CPU cores (adjust if necessary)
     memory: "10Gi"
 
 livenessProbe:
@@ -111,7 +111,7 @@ readinessProbe:
 autoscaling:
   enabled: true
   minReplicas: 1
-  maxReplicas: 1
+  maxReplicas: 2
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
 
@@ -133,8 +133,8 @@ aws:
 
 nodeSelector: {}
 
-tolerations:
-  - key: "nvidia.com/gpu"
-    effect: "NoSchedule"
+tolerations: []
+  # - key: "nvidia.com/gpu"
+  #   effect: "NoSchedule"
 
 affinity: {}
