@@ -370,7 +370,16 @@ molecule_net = {
     "bbbp": {
         "param_id": "bbbp",
         "display_name": "bbbp",
-        "description": "MoleculeNe BBBP: Blood brain barrier penetration",
+        "description": "MoleculeNet BBBP: Blood brain barrier penetration",
+        "type": "float",
+        "example": "CC(C)CC1=CC=C(C=C1)C(C)C(=O)O,0",
+        "min_value": "0",
+        "max_value": "1",
+    },
+        "biodegradability": {
+        "param_id": "biodegradability",
+        "display_name": "biodegradability",
+        "description": "MoleculeNet Biodegradability: Predicting the biodegradability of compounds",
         "type": "float",
         "example": "CC(C)CC1=CC=C(C=C1)C(C)C(=O)O,0",
         "min_value": "0",
