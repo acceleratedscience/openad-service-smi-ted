@@ -376,7 +376,7 @@ molecule_net = {
         "min_value": "0",
         "max_value": "1",
     },
-        "biodegradability": {
+    "biodegradability": {
         "param_id": "biodegradability",
         "display_name": "biodegradability",
         "description": "MoleculeNet Biodegradability: Predicting the biodegradability of compounds",
