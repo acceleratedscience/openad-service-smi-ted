@@ -103,13 +103,17 @@ class MySimplePredictorCombo(SimplePredictorMultiAlgorithm):
         df_test_emb = self.smi_ted_model.encode([sample])
         torch_emb = torch.tensor(df_test_emb.values)
         outputs: np.ndarray = self.smi_ted_model.net(torch_emb).cpu().detach().numpy()
-        """
-        outputs returns a single float in a numpy array. The statements below take the array, create a list from it, then
-        return the first value in the first list of lists.
-        """
         results_list = outputs.tolist()
-        return results_list[0][0]
-
+        """
+        Logic below will count how many floats were returned. If more 
+        than one float is returned by the SMI-TED model then it will return 
+        the list of the floats to the client, else just return one float.
+        """
+        num_of_floats_returned = len(results_list[0])
+        if num_of_floats_returned > 1:
+            return results_list[0]
+        else:
+            return results_list[0][0]
 
 # limiting to open source available checkpoints
 selected_algorithm_apps = os.getenv("SELECTED_ALGORITHM_APPS", default="QM9").split(",")
