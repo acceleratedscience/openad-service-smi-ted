@@ -1,5 +1,3 @@
-<img src='images/smiling_teddy_bear.png'> 
-
 # SMI-TED Inference for SMILES <!-- omit from toc -->
 
 [![License MIT](https://img.shields.io/github/license/acceleratedscience/openad_service_utils)](https://opensource.org/licenses/MIT)
