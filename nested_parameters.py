@@ -462,16 +462,6 @@ molecule_net = {
         "min_value": "-inf",
         "max_value": "inf",
     },
-    # FIXME: What is multi_regression trained on?
-    "multi_regression": {
-        "param_id": "multi_regression",
-        "display_name": "multi_regression",
-        "description": "MoleculeNet:",
-        "type": "float",
-        "example": "Cn1c(CN2CCN(CC2)c3ccc(Cl)cc3)nc4ccccc14,<need result>",
-        "min_value": "-inf",
-        "max_value": "inf",
-    },
     "sider": {
         "param_id": "sider",
         "display_name": "sider",
