@@ -156,7 +156,7 @@ In openad run the following command
 
 ### Notes
 
-- The container used is https://quay.io/ibmdpdev/openad_smi_ted:latest
+- The container used is quay.io/ibmdpdev/openad_model_smited:latest
 
 - You can use the compose.yaml file rather than download the entire repository
 

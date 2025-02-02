@@ -38,7 +38,7 @@ def get_property_list(propset: dict):
         result: {example_return}"""
 
         help_element = f"""Property: <cmd>{prop['param_id']}</cmd>
-- Description: {prop['display_name']} 
+- Description: {prop['description']} 
 - return type: {prop['type']}
 - Return value range: {prop['min_value'].split(',')[0]} to {prop['max_value'].split(',')[0]} 
 -Example of command generating property {prop['param_id']}:    {example}
@@ -124,6 +124,7 @@ class NestedParameters2(PropertyPredictorParameters):
                 self.algorithm_application = value
             elif key == "algorithm_version":
                 self.algorithm_version = value
+
 
 NESTED_DATA_SETS = {}
 
