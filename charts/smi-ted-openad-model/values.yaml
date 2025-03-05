@@ -5,17 +5,16 @@
 replicaCount: 1
 
 buildConfig:
-  name: smi-ted-build
-  gitUri: "https://github.com/acceleratedscience/openad_smi_ted.git"
-  gitRef: "main"
+  gitUri: "https://github.com/acceleratedscience/openad_smi_ted.git" # URL of the git repository
+  gitRef: "main"  # Branch of the git repository
   strategy: Docker
-  dockerfilePath: Dockerfile
-  sourceSecret: {}
+  dockerfilePath: Dockerfile  # Path to the Dockerfile
+  sourceSecret: {}  # Secret containing the SSH keys
+    # name: ssh-privatekey
 
 image:
-  repository: smi-ted-service
   tag: "latest"
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   env:
     - HF_HOME: "/tmp/.cache/huggingface"  # Set the new variable
     - MPLCONFIGDIR: "/tmp/.config/matplotlib"
@@ -27,6 +26,13 @@ image:
     - gt4sd_s3_bucket_properties: gt4sd-cos-properties-artifacts
     - gt4sd_s3_bucket_hub_algorithms: gt4sd-cos-properties-artifacts
     - gt4sd_s3_bucket_hub_properties: gt4sd-cos-properties-artifacts
+  envFrom:  # List of Secrets or ConfigMaps to inject into the init container and main container
+    - secretRef:
+        name: openad-gt4sd-aws-secret
+    - secretRef:
+        name: aws-credentials
+  #   - configMapRef:
+  #       name: config-map-name
 
 nameOverride: ""
 fullnameOverride: ""
@@ -81,12 +87,12 @@ ingress:
 resources:
   limits:
     # nvidia.com/gpu: 1
-    cpu: 15000m  # 20 CPU cores
-    memory: "25Gi"
+    cpu: 12000m
+    memory: "100Gi"
   requests:
     # nvidia.com/gpu: 1
-    cpu: 5000m   # 10 CPU cores (adjust if necessary)
-    memory: "10Gi"
+    cpu: 10000m
+    memory: "100Gi"
 
 livenessProbe:
   httpGet:
@@ -109,7 +115,7 @@ readinessProbe:
   failureThreshold: 5
 
 autoscaling:
-  enabled: true
+  enabled: false
   minReplicas: 1
   maxReplicas: 2
   targetCPUUtilizationPercentage: 80
@@ -125,16 +131,16 @@ volumeMounts:
 # init container config to download s3 resources
 aws:
   image: "amazon/aws-cli"
-  s3Source: "s3://gt4sd-cos-properties-artifacts/molecules/smi_ted" # s3 source path. !important set for Deployment
-  destination: "/data/.openad_models/properties/molecules/smi_ted"
-  credentials: "aws-secret"
+  args:
+    - "aws s3 sync s3://gt4sd-cos-properties-artifacts/molecules/smi_ted /data/.openad_models/properties/molecules/smi_ted"
   region: "us-east-2"
-
 
 nodeSelector: {}
 
-tolerations: []
-  # - key: "nvidia.com/gpu"
-  #   effect: "NoSchedule"
+tolerations:
+  - key: "worker/cpu"
+    value: "large"
+    effect: "NoSchedule"
+
 
 affinity: {}
