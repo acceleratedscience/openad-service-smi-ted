@@ -8,11 +8,12 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
 ## About: <!-- omit from toc -->
-<About Text needed>
 
+<!-- description -->
 SMILES-based Transformer Encoder-Decoder (SMILES-TED) is an encoder-decoder model pre-trained on a curated dataset of 91 million SMILES samples sourced from PubChem, equivalent to 4 billion molecular tokens. SMI-TED supports various complex tasks, including quantum property prediction, with two main variants ( 289 M and 8 × 289 M ).
 
-This repository provides a Python-based tool to access the SMI-TED models via a REST API. Once the API is set up, use the OpenAD Toolkit to easily access the inference functions of SMI-TED. 
+This repository provides a Python-based tool to access the SMI-TED models via a REST API. Once the API is set up, use the OpenAD Toolkit to easily access the inference functions of SMI-TED.
+<!-- /description -->
 
 More information on SMI-TED can be found at:<br> 
 - https://huggingface.co/ibm/materials.smi-ted
@@ -33,13 +34,13 @@ this current version of the code in app.py excludes all other properties other t
 <!-- toc -->
 
 - [Deployment locally using a Python virtual environment](#deployment-locally-using-a-python-virtual-environment)
-
 - [Deployment locally via container](#deployment-locally-via-container)
-
-- [Deployment locally via compose](#deployment-locally-via-compose)
-
 - [Deployment On OpenShift](#deployment-on-openshift)
-
+- [Deployment locally via Compose](#deployment-locally-via-compose)
+    - [step 1:](#step-1)
+    - [step 2:](#step-2)
+    - [Step 3:](#step-3)
+    - [Notes](#notes)
 - [Deployment via Sky Pilot](#deployment-via-sky-pilot)
 
 <!-- tocstop -->
