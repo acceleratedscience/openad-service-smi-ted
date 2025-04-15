@@ -16,13 +16,13 @@ This OpenAD service provides access to the **SMILES-based Transformer Encoder-De
 
 More information:  
 [huggingface.co/ibm/materials.smi-ted](https://huggingface.co/ibm/materials.smi-ted)  
-[github.com/IBM/materials/tree/main](https://github.com/IBM/materials/tree/main)  
+[github.com/IBM/materials](https://github.com/IBM/materials)  
 [arxiv.org/abs/2407.20267](https://arxiv.org/abs/2407.20267)
 <!-- /description -->
 
 For instructions on how to deploy and use this service in OpenAD, please refer to the [OpenAD docs](https://openad.accelerate.science/docs/model-service/prepackaged-models).
 
-> ![Note]
+> [!Note]
 > The current version of `app.py` excludes all properties other than _QM9_ properties. You can change this to include _QM8_ and _Molecule > Net_ if checkpoints available, simply by changing the selected algorithms list.
 
 <br>
