@@ -23,7 +23,7 @@ More information:
 For instructions on how to deploy and use this service in OpenAD, please refer to the [OpenAD docs](https://openad.accelerate.science/docs/model-service/prepackaged-models).
 
 > [!Note]
-> The current version of `app.py` excludes all properties other than _QM9_ properties. You can change this to include _QM8_ and _Molecule > Net_ if checkpoints available, simply by changing the selected algorithms list.
+> The current version of `app.py` excludes all properties other than `QM9` properties. You can change this to include `QM8` and `Molecule > Net` if the checkpoints are available, simply by changing the selected algorithms list.
 
 <br>
 
