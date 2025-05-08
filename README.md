@@ -20,7 +20,7 @@ https://openad.accelerate.science/docs/model-service/available-services
 ## About
 
 <!-- description -->
-This OpenAD service provides access to the **SMILES-based Transformer Encoder-Decoder** (SMILES-TED), which is an encoder-decoder model pre-trained on a curated dataset of 91 million SMILES samples sourced from PubChem, equivalent to 4 billion molecular tokens. SMI-TED supports various complex tasks, including quantum property prediction, with two main variants ( 289 M and 8 × 289 M ).
+This OpenAD service provides access to **SMILES-based Transformer Encoder-Decoder** (SMI-TED), a foundation model for materials science and chemistry. SMI-TED is an encoder-decoder model pre-trained on a curated dataset of 91 million SMILES samples sourced from PubChem, equivalent to 4 billion molecular tokens. SMI-TED supports various complex tasks, including quantum property prediction, with two main variants ( 289 M and 8 × 289 M ).
 
 More information:  
 [github.com/IBM/materials](https://github.com/IBM/materials)  
