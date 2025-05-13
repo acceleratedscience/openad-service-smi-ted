@@ -1,4 +1,4 @@
-# SMI-TED &nbsp;/&nbsp; Inference for SMILES
+# SMI-TED &nbsp;/&nbsp; Property Prediction on SMILES
 
 <!--
 The description & support tags are consumed by the generate_docs() script
