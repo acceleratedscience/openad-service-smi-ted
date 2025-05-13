@@ -32,7 +32,7 @@ More information:
 For instructions on how to deploy and use this service in OpenAD, please refer to the [OpenAD docs](https://openad.accelerate.science/docs/model-service/deploying-models).
 
 > [!Note]
-> The current public version of `app.py` includes only `QM9` properties from MoleculeNet. You can change this to include `QM8` and `Molecule > Net` if the checkpoints are available, simply by changing the selected algorithms list.
+> The current public version of `app.py` includes only `QM9` properties from MoleculeNet. You can augment this to include `QM8` and additional MoleculeNet properties (grouped under `MoleculeNet`) by changing the selected algorithms list, if the model checkpoints are available.
 
 <br>
 
